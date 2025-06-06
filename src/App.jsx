@@ -1,7 +1,6 @@
 import "./App.css";
-import Navbar from "./components/organisms/Navbar";
-import Closed_eyes from "./assets/mdi_eye-off.png";
 import HomeLayouts from "./layouts/HomeLayouts";
+import ClosedEye from "./assets/mdi_eye-off.png";
 
 function App() {
   return (
@@ -44,7 +43,7 @@ function App() {
                     id="togglePassword"
                     className="absolute inset-y-0 right-3 flex items-center text-gray-400 cursor-pointer"
                   >
-                    <img src={Closed_eyes} />
+                    <img src={ClosedEye} />
                   </span>
                 </div>
               </div>

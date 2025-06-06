@@ -1,4 +1,5 @@
 import React from "react";
+import Logo from "../../assets/logo.png";
 
 export default function Footer() {
   return (
@@ -8,7 +9,7 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between mb-8">
             <div className="md:w-1/3">
               <a href="#" className="text-2xl font-semibold">
-                <img src="../assets/logo.png" alt="logo videobelajar" />
+                <img src={Logo} alt="logo videobelajar" />
               </a>
               <p className="mt-4 text-xl font-bold text-gray-600">
                 Gali Potensi Anda Melalui Pembelajaran Video di hariesok.id!
