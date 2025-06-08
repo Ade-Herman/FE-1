@@ -91,10 +91,7 @@ export default function Register() {
                   id="togglePassword"
                   className="absolute inset-y-0 right-3 flex items-center text-gray-400 cursor-pointer"
                 >
-                  <img
-                    src="../assets/mdi_eye-off.png"
-                    alt="Toggle Password Visibility"
-                  />
+                  <img src={ClosedEye} alt="Toggle Password Visibility" />
                 </span>
               </div>
             </div>
