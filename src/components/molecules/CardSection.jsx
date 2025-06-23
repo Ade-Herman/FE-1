@@ -1,4 +1,6 @@
 import React from "react";
+import Card from "../atoms/Card";
+
 import CardImage1 from "../../assets/1st.jpeg";
 import CardImage2 from "../../assets/2nd.jpeg";
 import CardImage3 from "../../assets/3rd.jpeg";
@@ -17,435 +19,144 @@ import Profile6 from "../../assets/mini6.png";
 import Profile7 from "../../assets/mini7.png";
 import Profile8 from "../../assets/mini8.png";
 import Profile9 from "../../assets/mini9.png";
-import Stars from "../../assets/stars.jpeg";
+
+const cardData = [
+  {
+    id: 1,
+    cardImage: CardImage1,
+    title: "Big 4 Auditor Financial Analyst",
+    description:
+      "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan kurikulum terbaik.",
+    profileImage: Profile1,
+    instructorName: "Jenna Ortega",
+    instructorTitle: "Senior Accountant",
+    instructorCompany: "Gojek",
+    rating: 3.5,
+    reviewCount: 86,
+    price: "Rp 300K",
+  },
+  {
+    id: 2,
+    cardImage: CardImage2,
+    title: "Big 4 Auditor Financial Analyst",
+    description:
+      "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan kurikulum terbaik.",
+    profileImage: Profile2,
+    instructorName: "Jenna Ortega",
+    instructorTitle: "Senior Accountant",
+    instructorCompany: "Gojek",
+    rating: 3.5,
+    reviewCount: 86,
+    price: "Rp 300K",
+  },
+  {
+    id: 3,
+    cardImage: CardImage3,
+    title: "Big 4 Auditor Financial Analyst",
+    description:
+      "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan kurikulum terbaik.",
+    profileImage: Profile3,
+    instructorName: "Jenna Ortega",
+    instructorTitle: "Senior Accountant",
+    instructorCompany: "Gojek",
+    rating: 3.5,
+    reviewCount: 86,
+    price: "Rp 300K",
+  },
+  {
+    id: 4,
+    cardImage: CardImage4,
+    title: "Big 4 Auditor Financial Analyst",
+    description:
+      "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan kurikulum terbaik.",
+    profileImage: Profile4,
+    instructorName: "Jenna Ortega",
+    instructorTitle: "Senior Accountant",
+    instructorCompany: "Gojek",
+    rating: 3.5,
+    reviewCount: 86,
+    price: "Rp 300K",
+  },
+  {
+    id: 5,
+    cardImage: CardImage5,
+    title: "Big 4 Auditor Financial Analyst",
+    description:
+      "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan kurikulum terbaik.",
+    profileImage: Profile5,
+    instructorName: "Jenna Ortega",
+    instructorTitle: "Senior Accountant",
+    instructorCompany: "Gojek",
+    rating: 3.5,
+    reviewCount: 86,
+    price: "Rp 300K",
+  },
+  {
+    id: 6,
+    cardImage: CardImage6,
+    title: "Big 4 Auditor Financial Analyst",
+    description:
+      "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan kurikulum terbaik.",
+    profileImage: Profile6,
+    instructorName: "Jenna Ortega",
+    instructorTitle: "Senior Accountant",
+    instructorCompany: "Gojek",
+    rating: 3.5,
+    reviewCount: 86,
+    price: "Rp 300K",
+  },
+  {
+    id: 7,
+    cardImage: CardImage7,
+    title: "Big 4 Auditor Financial Analyst",
+    description:
+      "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan kurikulum terbaik.",
+    profileImage: Profile7,
+    instructorName: "Jenna Ortega",
+    instructorTitle: "Senior Accountant",
+    instructorCompany: "Gojek",
+    rating: 3.5,
+    reviewCount: 86,
+    price: "Rp 300K",
+  },
+  {
+    id: 8,
+    cardImage: CardImage8,
+    title: "Big 4 Auditor Financial Analyst",
+    description:
+      "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan kurikulum terbaik.",
+    profileImage: Profile8,
+    instructorName: "Jenna Ortega",
+    instructorTitle: "Senior Accountant",
+    instructorCompany: "Gojek",
+    rating: 3.5,
+    reviewCount: 86,
+    price: "Rp 300K",
+  },
+  {
+    id: 9,
+    cardImage: CardImage9,
+    title: "Big 4 Auditor Financial Analyst",
+    description:
+      "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan kurikulum terbaik.",
+    profileImage: Profile9,
+    instructorName: "Jenna Ortega",
+    instructorTitle: "Senior Accountant",
+    instructorCompany: "Gojek",
+    rating: 3.5,
+    reviewCount: 86,
+    price: "Rp 300K",
+  },
+];
 
 export default function CardSection() {
   return (
     <>
       <div className="max-w-6xl mx-auto mt-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-white p-4 rounded-2xl border border-gray-200 text-center">
-            <img
-              src={CardImage1}
-              alt="Card Image"
-              className="w-full h-40 object-cover rounded-lg mb-4"
-            />
-            <h3 className="text-xl font-semibold text-left">
-              Big 4 Auditor Financial Analyst
-            </h3>
-            <p className="text-gray-500 text-left line-clamp-2 mt-2">
-              Mulai transformasi dengan instruktur profesional, harga yang
-              terjangkau, dan kurikulum terbaik
-            </p>
-            <div className="flex items-center space-x-4 p-4 pl-0">
-              <img
-                src={Profile1}
-                alt="Profile"
-                className="w-12 h-12 squared-full rounded-xl"
-              />
-              <div>
-                <p className="text-gray-800 font-semibold text-left">
-                  Jenna Ortega
-                </p>
-                <p className="text-gray-500 text-sm">
-                  Senior Accountant di
-                  <span className="text-gray-500 font-semibold">Gojek</span>
-                </p>
-              </div>
-            </div>
-
-            <div className="max-w-xs mx-auto -m-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <div className="flex items-center space-x-1">
-                    <img src={Stars} alt="Star" className="w-30 h-20" />
-                  </div>
-                  <span className="ml-2 text-sm text-gray-600">
-                    <span className="font-medium">3.5</span> (86)
-                  </span>
-                </div>
-                <div className="text-xl font-bold tracking-wide text-green-400">
-                  Rp 300K
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded-2xl border border-gray-200 text-center">
-            <img
-              src={CardImage2}
-              alt="Card Image"
-              className="w-full h-40 object-cover rounded-lg mb-4"
-            />
-            <h3 className="text-xl font-semibold text-left">
-              Big 4 Auditor Financial Analyst
-            </h3>
-            <p className="text-gray-500 text-left line-clamp-2 mt-2">
-              Mulai transformasi dengan instruktur profesional, harga yang
-              terjangkau, dan kurikulum terbaik
-            </p>
-            <div className="flex items-center space-x-4 p-4 pl-0">
-              <img
-                src={Profile2}
-                alt="Profile"
-                className="w-12 h-12 squared-full rounded-xl"
-              />
-              <div>
-                <p className="text-gray-800 font-semibold text-left">
-                  Jenna Ortega
-                </p>
-                <p className="text-gray-500 text-sm">
-                  Senior Accountant di
-                  <span className="text-gray-500 font-semibold">Gojek</span>
-                </p>
-              </div>
-            </div>
-
-            <div className="max-w-xs mx-auto -m-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <div className="flex items-center space-x-1">
-                    <img src={Stars} alt="Star" className="w-30 h-20" />
-                  </div>
-                  <span className="ml-2 text-sm text-gray-600">
-                    <span className="font-medium">3.5</span> (86)
-                  </span>
-                </div>
-                <div className="text-xl font-bold tracking-wide text-green-400">
-                  Rp 300K
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded-2xl border border-gray-200 text-center">
-            <img
-              src={CardImage3}
-              alt="Card Image"
-              className="w-full h-40 object-cover rounded-lg mb-4"
-            />
-            <h3 className="text-xl font-semibold text-left">
-              Big 4 Auditor Financial Analyst
-            </h3>
-            <p className="text-gray-500 text-left line-clamp-2 mt-2">
-              Mulai transformasi dengan instruktur profesional, harga yang
-              terjangkau, dan kurikulum terbaik
-            </p>
-            <div className="flex items-center space-x-4 p-4 pl-0">
-              <img
-                src={Profile3}
-                alt="Profile"
-                className="w-12 h-12 squared-full rounded-xl"
-              />
-              <div>
-                <p className="text-gray-800 font-semibold text-left">
-                  Jenna Ortega
-                </p>
-                <p className="text-gray-500 text-sm">
-                  Senior Accountant di
-                  <span className="text-gray-500 font-semibold">Gojek</span>
-                </p>
-              </div>
-            </div>
-
-            <div className="max-w-xs mx-auto -m-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <div className="flex items-center space-x-1">
-                    <img src={Stars} alt="Star" className="w-30 h-20" />
-                  </div>
-                  <span className="ml-2 text-sm text-gray-600">
-                    <span className="font-medium">3.5</span> (86)
-                  </span>
-                </div>
-                <div className="text-xl font-bold tracking-wide text-green-400">
-                  Rp 300K
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded-2xl border border-gray-200 text-center">
-            <img
-              src={CardImage4}
-              alt="Card Image"
-              className="w-full h-40 object-cover rounded-lg mb-4"
-            />
-            <h3 className="text-xl font-semibold text-left">
-              Big 4 Auditor Financial Analyst
-            </h3>
-            <p className="text-gray-500 text-left line-clamp-2 mt-2">
-              Mulai transformasi dengan instruktur profesional, harga yang
-              terjangkau, dan kurikulum terbaik
-            </p>
-            <div className="flex items-center space-x-4 p-4 pl-0">
-              <img
-                src={Profile4}
-                alt="Profile"
-                className="w-12 h-12 squared-full rounded-xl"
-              />
-              <div>
-                <p className="text-gray-800 font-semibold text-left">
-                  Jenna Ortega
-                </p>
-                <p className="text-gray-500 text-sm">
-                  Senior Accountant di
-                  <span className="text-gray-500 font-semibold">Gojek</span>
-                </p>
-              </div>
-            </div>
-
-            <div className="max-w-xs mx-auto -m-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <div className="flex items-center space-x-1">
-                    <img src={Stars} alt="Star" className="w-30 h-20" />
-                  </div>
-                  <span className="ml-2 text-sm text-gray-600">
-                    <span className="font-medium">3.5</span> (86)
-                  </span>
-                </div>
-                <div className="text-xl font-bold tracking-wide text-green-400">
-                  Rp 300K
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded-2xl border border-gray-200 text-center">
-            <img
-              src={CardImage5}
-              alt="Card Image"
-              className="w-full h-40 object-cover rounded-lg mb-4"
-            />
-            <h3 className="text-xl font-semibold text-left">
-              Big 4 Auditor Financial Analyst
-            </h3>
-            <p className="text-gray-500 text-left line-clamp-2 mt-2">
-              Mulai transformasi dengan instruktur profesional, harga yang
-              terjangkau, dan kurikulum terbaik
-            </p>
-            <div className="flex items-center space-x-4 p-4 pl-0">
-              <img
-                src={Profile5}
-                alt="Profile"
-                className="w-12 h-12 squared-full rounded-xl"
-              />
-              <div>
-                <p className="text-gray-800 font-semibold text-left">
-                  Jenna Ortega
-                </p>
-                <p className="text-gray-500 text-sm">
-                  Senior Accountant di
-                  <span className="text-gray-500 font-semibold">Gojek</span>
-                </p>
-              </div>
-            </div>
-
-            <div className="max-w-xs mx-auto -m-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <div className="flex items-center space-x-1">
-                    <img src={Stars} alt="Star" className="w-30 h-20" />
-                  </div>
-                  <span className="ml-2 text-sm text-gray-600">
-                    <span className="font-medium">3.5</span> (86)
-                  </span>
-                </div>
-                <div className="text-xl font-bold tracking-wide text-green-400">
-                  Rp 300K
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded-2xl border border-gray-200 text-center">
-            <img
-              src={CardImage6}
-              alt="Card Image"
-              className="w-full h-40 object-cover rounded-lg mb-4"
-            />
-            <h3 className="text-xl font-semibold text-left">
-              Big 4 Auditor Financial Analyst
-            </h3>
-            <p className="text-gray-500 text-left line-clamp-2 mt-2">
-              Mulai transformasi dengan instruktur profesional, harga yang
-              terjangkau, dan kurikulum terbaik
-            </p>
-            <div className="flex items-center space-x-4 p-4 pl-0">
-              <img
-                src={Profile6}
-                alt="Profile"
-                className="w-12 h-12 squared-full rounded-xl"
-              />
-              <div>
-                <p className="text-gray-800 font-semibold text-left">
-                  Jenna Ortega
-                </p>
-                <p className="text-gray-500 text-sm">
-                  Senior Accountant di
-                  <span className="text-gray-500 font-semibold">Gojek</span>
-                </p>
-              </div>
-            </div>
-
-            <div className="max-w-xs mx-auto -m-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <div className="flex items-center space-x-1">
-                    <img src={Stars} alt="Star" className="w-30 h-20" />
-                  </div>
-                  <span className="ml-2 text-sm text-gray-600">
-                    <span className="font-medium">3.5</span> (86)
-                  </span>
-                </div>
-                <div className="text-xl font-bold tracking-wide text-green-400">
-                  Rp 300K
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded-2xl border border-gray-200 text-center">
-            <img
-              src={CardImage7}
-              alt="Card Image"
-              className="w-full h-40 object-cover rounded-lg mb-4"
-            />
-            <h3 className="text-xl font-semibold text-left">
-              Big 4 Auditor Financial Analyst
-            </h3>
-            <p className="text-gray-500 text-left line-clamp-2 mt-2">
-              Mulai transformasi dengan instruktur profesional, harga yang
-              terjangkau, dan kurikulum terbaik
-            </p>
-            <div className="flex items-center space-x-4 p-4 pl-0">
-              <img
-                src={Profile7}
-                alt="Profile"
-                className="w-12 h-12 squared-full rounded-xl"
-              />
-              <div>
-                <p className="text-gray-800 font-semibold text-left">
-                  Jenna Ortega
-                </p>
-                <p className="text-gray-500 text-sm">
-                  Senior Accountant di
-                  <span className="text-gray-500 font-semibold">Gojek</span>
-                </p>
-              </div>
-            </div>
-
-            <div className="max-w-xs mx-auto -m-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <div className="flex items-center space-x-1">
-                    <img src={Stars} alt="Star" className="w-30 h-20" />
-                  </div>
-                  <span className="ml-2 text-sm text-gray-600">
-                    <span className="font-medium">3.5</span> (86)
-                  </span>
-                </div>
-                <div className="text-xl font-bold tracking-wide text-green-400">
-                  Rp 300K
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded-2xl border border-gray-200 text-center">
-            <img
-              src={CardImage8}
-              alt="Card Image"
-              className="w-full h-40 object-cover rounded-lg mb-4"
-            />
-            <h3 className="text-xl font-semibold text-left">
-              Big 4 Auditor Financial Analyst
-            </h3>
-            <p className="text-gray-500 text-left line-clamp-2 mt-2">
-              Mulai transformasi dengan instruktur profesional, harga yang
-              terjangkau, dan kurikulum terbaik
-            </p>
-            <div className="flex items-center space-x-4 p-4 pl-0">
-              <img
-                src={Profile8}
-                alt="Profile"
-                className="w-12 h-12 squared-full rounded-xl"
-              />
-              <div>
-                <p className="text-gray-800 font-semibold text-left">
-                  Jenna Ortega
-                </p>
-                <p className="text-gray-500 text-sm">
-                  Senior Accountant di
-                  <span className="text-gray-500 font-semibold">Gojek</span>
-                </p>
-              </div>
-            </div>
-
-            <div className="max-w-xs mx-auto -m-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <div className="flex items-center space-x-1">
-                    <img src={Stars} alt="Star" className="w-30 h-20" />
-                  </div>
-                  <span className="ml-2 text-sm text-gray-600">
-                    <span className="font-medium">3.5</span> (86)
-                  </span>
-                </div>
-                <div className="text-xl font-bold tracking-wide text-green-400">
-                  Rp 300K
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded-2xl border border-gray-200 text-center">
-            <img
-              src={CardImage9}
-              alt="Card Image"
-              className="w-full h-40 object-cover rounded-lg mb-4"
-            />
-            <h3 className="text-xl font-semibold text-left">
-              Big 4 Auditor Financial Analyst
-            </h3>
-            <p className="text-gray-500 text-left line-clamp-2 mt-2">
-              Mulai transformasi dengan instruktur profesional, harga yang
-              terjangkau, dan kurikulum terbaik
-            </p>
-            <div className="flex items-center space-x-4 p-4 pl-0">
-              <img
-                src={Profile9}
-                alt="Profile"
-                className="w-12 h-12 squared-full rounded-xl"
-              />
-              <div>
-                <p className="text-gray-800 font-semibold text-left">
-                  Jenna Ortega
-                </p>
-                <p className="text-gray-500 text-sm">
-                  Senior Accountant di
-                  <span className="text-gray-500 font-semibold">Gojek</span>
-                </p>
-              </div>
-            </div>
-
-            <div className="max-w-xs mx-auto -m-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <div className="flex items-center space-x-1">
-                    <img src={Stars} alt="Star" className="w-30 h-20" />
-                  </div>
-                  <span className="ml-2 text-sm text-gray-600">
-                    <span className="font-medium">3.5</span> (86)
-                  </span>
-                </div>
-                <div className="text-xl font-bold tracking-wide text-green-400">
-                  Rp 300K
-                </div>
-              </div>
-            </div>
-          </div>
+          {cardData.map((data) => (
+            <Card key={data.id} {...data} />
+          ))}
         </div>
       </div>
     </>
