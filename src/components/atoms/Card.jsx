@@ -14,7 +14,11 @@ export default function Card({
   price,
 }) {
   return (
+<<<<<<< HEAD
     <div className="bg-white p-4 rounded-2xl border border-gray-200 flex flex-col h-full">
+=======
+    <div className="bg-white p-4 rounded-2xl border border-gray-200 flex flex-col">
+>>>>>>> afb61765d41ef062b7bb98fa6cecf4402efa3d0a
       <img
         src={cardImage}
         alt={title}
@@ -45,10 +49,19 @@ export default function Card({
         </div>
       </div>
 
+<<<<<<< HEAD
       <div className="mt-auto pt-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <img src={Stars} alt="Star rating" className="w-20 h-4" />
+=======
+      <div className="max-w-xs mx-auto w-full">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center">
+            <div className="flex items-center space-x-1">
+              <img src={Stars} alt="Star rating" className="w-30 h-20" />
+            </div>
+>>>>>>> afb61765d41ef062b7bb98fa6cecf4402efa3d0a
             <span className="ml-2 text-sm text-gray-600">
               <span className="font-medium">{rating}</span> ({reviewCount})
             </span>
