@@ -1,8 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import ClosedEye from "../assets/mdi_eye-off.png";
+import OpenEye from "../assets/mdi_eye.png";
 import NavbarAuth from "../components/organisms/NavbarAuth";
 
 export default function Login() {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    try {
+      const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+
+      const user = existingUsers.find((user) => user.email === email);
+
+      if (!user) {
+        alert("No user found with this email.");
+        return;
+      }
+
+      if (user.password !== password) {
+        alert("Incorrect password.");
+        return;
+      }
+
+      alert(`Welcome back, ${user.name}!`);
+
+      localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+      navigate("/");
+    } catch (error) {
+      alert("An error occurred during login.");
+      console.error("Login error:", error);
+    }
+  };
+
   return (
     <>
       <NavbarAuth />
@@ -15,7 +52,7 @@ export default function Login() {
             Yuk, lanjutin belajarmu di videobelajar.
           </p>
 
-          <form id="loginForm">
+          <form id="loginForm" onSubmit={handleLogin}>
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-500">
                 E-Mail <span className="text-red-500">*</span>
@@ -25,6 +62,8 @@ export default function Login() {
                 id="email"
                 className="w-full mt-1 p-2 border border-gray-100 rounded-md focus:ring focus:ring-blue-200"
                 required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
@@ -34,22 +73,33 @@ export default function Login() {
               </label>
               <div className="relative">
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   id="password"
                   className="w-full mt-1 p-2 border border-gray-100 rounded-md focus:ring focus:ring-blue-200"
                   required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <span
-                  id="togglePassword"
+                  onClick={() => setShowPassword(!showPassword)}
                   className="absolute inset-y-0 right-3 flex items-center text-gray-400 cursor-pointer"
                 >
-                  <img src={ClosedEye} />
+                  <img
+                    src={showPassword ? OpenEye : ClosedEye}
+                    alt="Toggle Password Visibility"
+                    className="w-5 h-5"
+                  />
                 </span>
               </div>
             </div>
 
             <div className="flex justify-end mb-4">
-              <p className="text-sm font-bold text-gray-500">Lupa Password?</p>
+              <Link
+                to="/forgot-password"
+                className="text-sm font-bold text-gray-500"
+              >
+                Lupa Password?
+              </Link>
             </div>
 
             <button
@@ -58,12 +108,12 @@ export default function Login() {
             >
               Masuk
             </button>
-            <button
-              type="button"
-              className="w-full py-2 mt-2 bg-[#E0FDDF;] text-green-500 font-bold rounded-md"
+            <Link
+              to="/register"
+              className="w-full block text-center py-2 mt-2 bg-[#E0FDDF] text-green-500 font-bold rounded-md"
             >
               Daftar
-            </button>
+            </Link>
 
             <div className="flex items-center my-4">
               <hr className="flex-grow border-gray-200" />

@@ -1,23 +1,83 @@
-import React from "react";
-import Navbar from "../components/organisms/Navbar";
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import NavbarAuth from "../components/organisms/NavbarAuth";
 import ClosedEye from "../assets/mdi_eye-off.png";
+import OpenEye from "../assets/mdi_eye.png";
 import BenderaIndonesia from "../assets/indonesia.png";
 
 export default function Register() {
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+  };
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
+    try {
+      const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+
+      const userExists = existingUsers.some(
+        (user) => user.email === formData.email
+      );
+      if (userExists) {
+        alert("A user with this email already exists.");
+        return;
+      }
+
+      const newUser = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        password: formData.password,
+      };
+
+      existingUsers.push(newUser);
+
+      localStorage.setItem("users", JSON.stringify(existingUsers));
+
+      alert("Registration successful! Please log in.");
+      navigate("/login");
+    } catch (error) {
+      alert("An error occurred during registration.");
+      console.error("Registration error:", error);
+    }
+  };
+
   return (
     <>
-      <Navbar />
+      <NavbarAuth />
       <div className="flex items-center justify-center min-h-screen">
         <div className="w-full max-w-md p-6 bg-white border border-gray-200 shadow-md">
-          {" "}
           <h2 className="text-2xl font-semibold text-center mb-1">
             Pendaftaran Akun
           </h2>
           <p className="text-sm text-center text-gray-500 mb-4">
             Yuk, daftarkan akunmu sekarang juga!
           </p>
-          <form>
-            {" "}
+
+          <form onSubmit={handleRegister}>
             <div className="mb-4">
               <label
                 htmlFor="name"
@@ -30,6 +90,8 @@ export default function Register() {
                 id="name"
                 className="w-full mt-1 p-2 border border-gray-100 rounded-md focus:ring focus:ring-blue-200"
                 required
+                value={formData.name}
+                onChange={handleChange}
               />
             </div>
             <div className="mb-4">
@@ -44,6 +106,8 @@ export default function Register() {
                 id="email"
                 className="w-full mt-1 p-2 border border-gray-100 rounded-md focus:ring focus:ring-blue-200"
                 required
+                value={formData.email}
+                onChange={handleChange}
               />
             </div>
             <div className="mb-4">
@@ -66,10 +130,12 @@ export default function Register() {
                 </div>
                 <input
                   id="phone"
-                  type="text"
+                  type="tel"
                   placeholder="8123456789"
                   className="w-full px-3 py-2 border-t border-b border-r border-gray-100 rounded-r-md focus:outline-none focus:ring focus:ring-blue-200"
                   required
+                  value={formData.phone}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -82,16 +148,22 @@ export default function Register() {
               </label>
               <div className="relative">
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   id="password"
                   className="w-full mt-1 p-2 border border-gray-100 rounded-md focus:ring focus:ring-blue-200"
                   required
+                  value={formData.password}
+                  onChange={handleChange}
                 />
                 <span
-                  id="togglePassword"
+                  onClick={() => setShowPassword(!showPassword)}
                   className="absolute inset-y-0 right-3 flex items-center text-gray-400 cursor-pointer"
                 >
-                  <img src={ClosedEye} alt="Toggle Password Visibility" />
+                  <img
+                    src={showPassword ? OpenEye : ClosedEye}
+                    alt="Toggle Password Visibility"
+                    className="w-5 h-5"
+                  />
                 </span>
               </div>
             </div>
@@ -104,52 +176,46 @@ export default function Register() {
               </label>
               <div className="relative">
                 <input
-                  type="password"
+                  type={showConfirmPassword ? "text" : "password"}
                   id="confirmPassword"
                   className="w-full mt-1 p-2 border border-gray-100 rounded-md focus:ring focus:ring-blue-200"
                   required
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
                 />
                 <span
-                  id="toggleConfirmPassword"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   className="absolute inset-y-0 right-3 flex items-center text-gray-400 cursor-pointer"
                 >
-                  <img src={ClosedEye} alt="Toggle Password Visibility" />
+                  <img
+                    src={showConfirmPassword ? OpenEye : ClosedEye}
+                    alt="Toggle Password Visibility"
+                    className="w-5 h-5"
+                  />
                 </span>
               </div>
             </div>
             <div className="flex justify-end mb-4">
-              <p className="text-sm font-bold text-gray-500 cursor-pointer hover:text-blue-500">
+              <Link
+                to="/forgot-password"
+                className="text-sm font-bold text-gray-500 cursor-pointer hover:text-blue-500"
+              >
                 Lupa Password?
-              </p>
+              </Link>
             </div>
             <button
               type="submit"
               className="w-full py-2 bg-green-500 text-white font-bold rounded-md mb-2 hover:bg-green-600"
             >
-              Masuk
-            </button>
-            <button
-              type="button"
-              className="w-full py-2 mt-2 bg-[#E0FDDF] text-green-500 font-bold rounded-md hover:bg-green-100"
-            >
               Daftar
             </button>
-            <div className="flex items-center my-4">
-              <hr className="flex-grow border-gray-200" />
-              <span className="px-2 text-gray-500">atau</span>
-              <hr className="flex-grow border-gray-200" />
-            </div>
-            <button
-              type="button"
-              className="w-full flex items-center justify-center py-2 border border-gray-200 rounded-md text-gray-500 font-bold hover:bg-gray-50"
+
+            <Link
+              to="/login"
+              className="w-full block text-center py-2 mt-2 bg-[#E0FDDF] text-green-500 font-bold rounded-md hover:bg-green-100"
             >
-              <img
-                src="https://www.svgrepo.com/show/355037/google.svg"
-                alt="Google"
-                className="w-5 h-5 mr-2"
-              />
-              Masuk dengan Google
-            </button>
+              Sudah punya akun? Masuk
+            </Link>
           </form>
         </div>
       </div>
