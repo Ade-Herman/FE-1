@@ -1,16 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { loadUserFromStorage } from "./features/auth/authSlice";
-import AppRoutes from "./routes/index";
+import { Outlet } from "react-router-dom";
+import { loadUserFromStorage } from "../features/auth/authSlice";
 
-function App() {
+export default function RootLayout() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadUserFromStorage());
   }, [dispatch]);
 
-  return <AppRoutes />;
+  return <Outlet />;
 }
-
-export default App;

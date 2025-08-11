@@ -1,44 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../features/auth/authSlice";
 import ClosedEye from "../assets/mdi_eye-off.png";
 import OpenEye from "../assets/mdi_eye.png";
 import NavbarAuth from "../components/organisms/NavbarAuth";
 
 export default function Login() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
+  const { status, error, user } = useSelector((state) => state.auth);
+
   const handleLogin = (e) => {
     e.preventDefault();
-
-    try {
-      const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
-
-      const user = existingUsers.find((user) => user.email === email);
-
-      if (!user) {
-        alert("No user found with this email.");
-        return;
-      }
-
-      if (user.password !== password) {
-        alert("Incorrect password.");
-        return;
-      }
-
-      alert(`Welcome back, ${user.name}!`);
-
-      localStorage.setItem("loggedInUser", JSON.stringify(user));
-
-      navigate("/");
-    } catch (error) {
-      alert("An error occurred during login.");
-      console.error("Login error:", error);
-    }
+    dispatch(loginUser({ email, password }));
   };
+
+  useEffect(() => {
+    if (status === "succeeded" && user) {
+      alert(`Welcome back, ${user.name}!`);
+      navigate("/");
+    }
+  }, [status, user, navigate]);
 
   return (
     <>
@@ -51,6 +39,12 @@ export default function Login() {
           <p className="text-sm text-center text-gray-500 mb-4">
             Yuk, lanjutin belajarmu di videobelajar.
           </p>
+
+          {status === "failed" && (
+            <div className="p-3 mb-4 text-sm text-red-700 bg-red-100 rounded-md text-center">
+              {error}
+            </div>
+          )}
 
           <form id="loginForm" onSubmit={handleLogin}>
             <div className="mb-4">
@@ -105,8 +99,9 @@ export default function Login() {
             <button
               type="submit"
               className="w-full py-2 bg-green-500 text-white font-bold rounded-md mb-2"
+              disabled={status === "loading"}
             >
-              Masuk
+              {status === "loading" ? "Loading..." : "Masuk"}
             </button>
             <Link
               to="/register"

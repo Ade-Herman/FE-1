@@ -1,43 +1,28 @@
-import React, { useState, useEffect } from "react";
-import apiClient from "../../services/api/api";
+import React from "react";
+import { useGetProductsQuery } from "../../features/products/productsApiSlice";
 import Card from "../atoms/Card";
 
-export default function Beranda() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+export default function CardSection() {
+  const { data: products, isLoading, isError, error } = useGetProductsQuery();
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setLoading(true);
-        const response = await apiClient.get("/products");
-        setProducts(response.data);
-        setError(null);
-      } catch (err) {
-        setError("Gagal memuat produk. Silakan coba lagi nanti.");
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, []);
-
-  if (loading) {
+  if (isLoading) {
     return <div className="text-center p-10">Loading...</div>;
   }
 
-  if (error) {
-    return <div className="text-center p-10 text-red-500">{error}</div>;
+  if (isError) {
+    console.error(error);
+    return (
+      <div className="text-center p-10 text-red-500">
+        Gagal memuat produk. Silakan coba lagi nanti.
+      </div>
+    );
   }
 
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-6">Produk Populer</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map((product) => (
+        {products?.map((product) => (
           <Card
             key={product.id}
             cardImage={product.cardImage}
